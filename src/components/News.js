@@ -40,10 +40,10 @@ const News = () => {
                   <li className="wow fadeInUp" data-wow-duration="1s" key={i}>
                     <div className="list_inner">
                       <div className="image">
-                        <img src="https://www.careeraddict.com/uploads/article/62364/work-experience.png" alt="image" />
+                        <img src="https://www.careeraddict.com/uploads/article/59897/career-developm-work-experience-benefits.jpg" alt="image" />
                         <div
                           className="main"
-                          data-img-url="https://www.careeraddict.com/uploads/article/62364/work-experience.png  "
+                          data-img-url="https://www.careeraddict.com/uploads/article/59897/career-developm-work-experience-benefits.jpg"
                           style={{
                             backgroundImage: `url(${blog && blog.img})`,
                           }}
