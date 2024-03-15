@@ -1,5 +1,5 @@
 # Portfolio Website with Dynamic Content
-This project is a dynamic portfolio website built using React.js. The main feature of this project is the dynamic fetching of content from an external API to populate the portfolio section.
+This project is a dynamic portfolio website built using Next.js. The main feature of this project is the dynamic fetching of content from an external API to populate the portfolio section.
 
 ## Features
 Fetches data from an external API to dynamically populate the portfolio section.
