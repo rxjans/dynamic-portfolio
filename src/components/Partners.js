@@ -45,7 +45,7 @@ const Partners = ({ dark }) => {
                         src={img.image.url}
                         alt="image"
                       />
-                      <a className="dizme_tm_full_link" a="" href={img.url} />
+                      <a className="dizme_tm_full_link" href={img.url} />
                     </div>
                   </li>
                 ))}
