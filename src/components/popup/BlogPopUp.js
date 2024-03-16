@@ -11,12 +11,24 @@ const BlogPopUp = ({ data, open, close }) => {
           <div className="description_wrap">
             <div className="news_popup_informations">
               <div className="image">
-                <img src="https://img.jagranjosh.com/imported/images/E/Articles/imp-of-work-ex.jpg" alt="image" />
-                <div
+              {
+                data?.forEducation ? <img src="https://cdn.elearningindustry.com/wp-content/uploads/2022/02/shutterstock_1112381495.jpg" alt="image" /> : <img src="https://img.jagranjosh.com/imported/images/E/Articles/imp-of-work-ex.jpg" alt="image" />
+              }
+              {
+                data?.forEducation ? (<div
+                  className="main"
+                  data-img-url="https://cdn.elearningindustry.com/wp-content/uploads/2022/02/shutterstock_1112381495.jpg"
+                  style={{ backgroundImage: `url("https://cdn.elearningindustry.com/wp-content/uploads/2022/02/shutterstock_1112381495.jpg")` }}
+                />
+              )
+                : 
+                (<div
                   className="main"
                   data-img-url="https://img.jagranjosh.com/imported/images/E/Articles/imp-of-work-ex.jpg"
-                  style={{ backgroundImage: `url(${data && data.img})` }}
+                  style={{ backgroundImage: `url("https://img.jagranjosh.com/imported/images/E/Articles/imp-of-work-ex.jpg")` }}
                 />
+              )
+              }
               </div>
               <div className="details">
                 <h3>{data ? data.jobTitle : "Title"}</h3>

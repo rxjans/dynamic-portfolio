@@ -1,26 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fatchData } from "../utilits";
+import UserContext from "../userContext/userContext";
 const Contact = () => {
   const [data, setData] = useState({});
+  const data1 = useContext(UserContext);
   useEffect(() => {
-    const fetchData = async()=>{
-      try {
-        const res = await fetch("https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae");
-        const data = await res.json();
-        if(res.ok){
-          setData(data.user.about);
-          console.log(data.user.about);
-        }
-        if(!res.ok){
-          console.log(data.success);
-        }
-      } 
-     catch (error) {
-        console.log(error);   
-      }
-  }
-  fetchData();
-}, []);
+    setData(data1?.about)
+}, [data1]);
   return (
     <div className="dizme_tm_section" id="contact">
       <div className="dizme_tm_contact">

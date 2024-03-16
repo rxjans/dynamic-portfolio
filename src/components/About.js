@@ -1,25 +1,8 @@
 import Counter from "./Counter";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import UserContext from "../userContext/userContext";
 const About = ({ dark }) => {
-  const [data, setData] = useState({});
-  useEffect(() => {
-    const fetchData = async()=>{
-      try {
-        const res = await fetch("https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae");
-        const data = await res.json();
-        if(res.ok){
-          setData(data.user.about);
-        }
-        if(!res.ok){
-          console.log(data.success);
-        }
-      } 
-     catch (error) {
-        console.log(error);   
-      }
-  }
-  fetchData();
-}, []);
+  const data = useContext(UserContext);
   return (
     <div className="dizme_tm_section" id="about">
       <div className="dizme_tm_about">
@@ -56,12 +39,12 @@ const About = ({ dark }) => {
             </div>
             <div className="right">
               <div className="title wow fadeInUp" data-wow-duration="1s">
-                <span>{`I'm a ${data && data.title}`}</span>
-                <h3>{data && data.subTitle}</h3>
+                <span>{`I'm a ${data && data?.about?.title}`}</span>
+                <h3>{data && data.about.subTitle}</h3>
               </div>
               <div className="text wow fadeInUp" data-wow-duration="1s">
                 <p>
-                  {data.description}
+                  {data?.about?.description}
                 </p>
               </div>
               <div

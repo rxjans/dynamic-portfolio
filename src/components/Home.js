@@ -1,27 +1,9 @@
 import parse from "html-react-parser";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fatchData } from "../utilits";
-
+import UserContext from "../userContext/userContext";
 const Home = ({ dark }) => {
-  const [data, setData] = useState({});
-  useEffect(() => {
-    const fetchData = async()=>{
-      try {
-        const res = await fetch("https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae");
-        const data = await res.json();
-        if(res.ok){
-          setData(data.user.about);
-        }
-        if(!res.ok){
-          console.log(data.success);
-        }
-      } 
-     catch (error) {
-        console.log(error);   
-      }
-  }
-  fetchData();
-}, []);
+ const data = useContext(UserContext);
 
   return (
     <div className="dizme_tm_section" id="home">
@@ -38,16 +20,16 @@ const Home = ({ dark }) => {
                 <h3 className="orangeText">{`Hello, I'm`}</h3>
               </div>
               <div className="name">
-                <h3>{data && data.name ? data.name : "name"}</h3>
+                <h3>{data && data?.about ? data?.about?.name : "name"}</h3>
               </div>
               <div className="job">
                 <p>
-                  A <span className="greenText">{data && data.title}</span>{" "}
-                  From <span className="purpleText">{data.address}</span>
+                  A <span className="greenText">{data && data?.about?.title}</span>{" "}
+                  From <span className="purpleText">{data?.about?.address}</span>
                 </p>
               </div>
               <div className="text">
-                <p>{data.description}</p>
+                <p>{data?.about?.description}</p>
               </div>
               <div className="button">
                 <div className="dizme_tm_button">
@@ -64,7 +46,7 @@ const Home = ({ dark }) => {
                   alt="image"
                 />
                 {data &&
-                  data.skills &&
+                  data?.skills &&
                   data.skills.map(
                     (skill, i) =>
                       skill.icon && (

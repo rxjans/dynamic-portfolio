@@ -1,27 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { activeSkillProgress, fatchData } from "../utilits";
-
+import UserContext from "../userContext/userContext";
 const Skills = ({ dark }) => {
   const [userData, setUserData] = useState([]);
+  const data = useContext(UserContext);
   useEffect(() => {
-    const fetchData = async()=>{
-      try {
-        const res = await fetch("https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae");
-        const data = await res.json();
-        if(res.ok){
-          setUserData(data.user.skills);
-          console.log(data.user);
-        }
-        if(!res.ok){
-          console.log(data.success);
-        }
-      } 
-     catch (error) {
-        console.log(error);   
-      }
-  }
-  fetchData();
-}, []);
+    setUserData(data?.skills?.filter(item => item.enabled)); //filtering skills based on enabled property from the API.
+}, [data]);
   useEffect(() => {
     window.addEventListener("scroll", activeSkillProgress);
   }, []);

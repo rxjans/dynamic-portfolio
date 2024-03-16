@@ -1,56 +1,28 @@
 import Isotope from "isotope-layout";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { dataImage, portfolioHover } from "../utilits";
 import DetailsPopup from "./popup/DetailsPopup";
+import UserContext from "../userContext/userContext";
 import WOW from "wowjs";
 
 const Portfolio = () => {
+  const data1 = useContext(UserContext);
   const [data, setData] = useState([]);
-  const [show, setShow] = useState(false);
-  const [run, setRun] = useState('');
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setShow(false);
-        const res = await fetch(
-          "https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae"
-        );
-        const data = await res.json();
-        if (data.user.projects[0].image) {
-          setData(data.user.projects);
-          setShow(true);
-          setRun('run');
-        }
-        if (!res.ok) {
-          console.log(data.successs);
-          setShow(false);
-        }
-      } catch (error) {
-        console.log(error);
-        setShow(false);
-      }
-    };
-    fetchData();
-  });
 
-  useEffect(() => {
-    setTimeout(() => {
-      dataImage();
-      portfolioHover();
-    }, 500);
-  }, [data]);
 
   useEffect(()=>{
-    
-    setFilterKey("youtube");
-    setTimeout(()=>{
-      setFilterKey("*")
-    },10)
-  },[run])
+      setData(data1?.projects?.filter(item => item.enabled)); //filtering data based on enabled property.
+  },[data1])
+
+  useEffect(() => {
+      dataImage();
+      portfolioHover();
+  },[data]);
+
 
   // Isotope
   const isotope = useRef();
-  const [filterKey, setFilterKey] = useState("*");
+  const [techStackFilter, setTechStackFilter] = useState("*"); //using techStack filter instead of filter keys.
   useEffect(() => {
     setTimeout(() => {
       isotope.current = new Isotope(".gallery_zoom", {
@@ -69,27 +41,29 @@ const Portfolio = () => {
     }, 500);
     return () => isotope.current.destroy();
   }, []);
+
   useEffect(() => {
     if (isotope.current) {
-      filterKey === "*"
+      techStackFilter === "*"
         ? isotope.current.arrange({ filter: `*` })
-        : isotope.current.arrange({ filter: `.${filterKey}` });
+        : isotope.current.arrange({ filter: `.${techStackFilter}` });
     }
-  }, [filterKey]);
-  const handleFilterKeyChange = (key) => () => {
-    setFilterKey(key);
+  }, [techStackFilter]);
+
+  const handleTechStackFilterChange = (stack) => () => {
+    setTechStackFilter(stack);
   };
-  const activeBtn = (value) => (value === filterKey ? "current" : "");
+
+  const activeBtn = (value) => (value === techStackFilter ? "current" : ""); 
 
   // Popup
   const [popup, setPopup] = useState(false);
+  const [popupData, setPopupData] = useState();
 
-  // const height = {
-  //   maxHeight: '100vh'
-  // };
+  
   return (
     <div className="dizme_tm_section" id="portfolio">
-      <DetailsPopup open={popup} close={() => setPopup(false)} />
+      <DetailsPopup open={popup} data={popupData} close={() => setPopup(false)} />
       <div className="dizme_tm_portfolio">
         <div className="container">
           <div className="dizme_tm_main_title" data-align="center">
@@ -101,196 +75,75 @@ const Portfolio = () => {
             </p>
           </div>
           <div className="portfolio_filter">
-            <ul>
-              <li>
-                <a
-                  className={`c-pointer ${activeBtn("*")}`}
-                  onClick={handleFilterKeyChange("*")}
-                >
-                  All
-                </a>
-              </li>
-              <li>
-                <a
-                  className={`c-pointer ${activeBtn("youtube")}`}
-                  onClick={handleFilterKeyChange("youtube")}
-                >
-                  Youtube
-                </a>
-              </li>
-              <li>
-                <a
-                  className={`c-pointer ${activeBtn("vimeo")}`}
-                  onClick={handleFilterKeyChange("vimeo")}
-                >
-                  Vimeo
-                </a>
-              </li>
-              <li>
-                <a
-                  className={`c-pointer ${activeBtn("soundcloud")}`}
-                  onClick={handleFilterKeyChange("soundcloud")}
-                >
-                  Soundcloud
-                </a>
-              </li>
-              <li>
-                <a
-                  className={`c-pointer ${activeBtn("popup")}`}
-                  onClick={handleFilterKeyChange("popup")}
-                >
-                  Popup
-                </a>
-              </li>
-              <li>
-                <a
-                  className={`c-pointer  ${activeBtn("detail")}`}
-                  onClick={handleFilterKeyChange("detail")}
-                >
-                  Detail
-                </a>
-              </li>
-            </ul>
-          </div>
+        <ul>
+          <li>
+            <a
+              className={`c-pointer ${activeBtn("*")}`}
+              onClick={handleTechStackFilterChange("*")}
+            >
+              All
+            </a>
+          </li>
+          <li>
+            <a
+              className={`c-pointer ${activeBtn("Reactjs")}`}
+              onClick={handleTechStackFilterChange("Reactjs")}
+            >
+              React
+            </a>
+          </li>
+          <li>
+            <a
+              className={`c-pointer ${activeBtn("Nextjs")}`}
+              onClick={handleTechStackFilterChange("Nextjs")}
+            >
+              Next
+            </a>
+          </li>
+          <li>
+            <a
+              className={`c-pointer ${activeBtn("Mern")}`}
+              onClick={handleTechStackFilterChange("Mern")}
+            >
+              MERN
+            </a>
+          </li>
+          <li>
+            <a
+              className={`c-pointer ${activeBtn("CSS")}`}
+              onClick={handleTechStackFilterChange("CSS")}
+            >
+              CSS
+            </a>
+          </li>
+        </ul>
+      </div>
           <div className="dizme_tm_portfolio_titles" />
           <div className="portfolio_list wow fadeInUp" data-wow-duration="1s">
             <ul className="gallery_zoom grid">
-              <li className="youtube grid-item">
-                <div className="inner">
-                  <div
-                    className="entry dizme_tm_portfolio_animation_wrap"
-                    data-title="Mockup Shape"
-                    data-category="Youtube"
-                  >
-                    <a
-                      className="popup-youtube"
-                      href="https://www.youtube.com/embed/7e90gBu4pas?autoplay=1"
-                    >
-                      <img src={data[0]?.image?.url} alt="image" />
+              {
+                data && data?.map((data, i)=>{
+                  return(<li key={i} className={`${data?.techStack} grid-item`} onClick={() => {setPopup(true); setPopupData(data)}}>
+                    <div className="inner">
                       <div
-                        className="main"
-                        data-img-url={data[0]?.image?.url}
-                      />
-                    </a>
-                  </div>
-                  <div className="mobile_title">
-                    <h3>Mockup Shape</h3>
-                    <span>Youtube</span>
-                  </div>
-                </div>
-              </li>
-              <li className="vimeo grid-item">
-                <div className="inner">
-                  <div
-                    className="entry dizme_tm_portfolio_animation_wrap"
-                    data-title="Ave Bottle"
-                    data-category="Vimeo"
-                  >
-                    <a
-                      className="popup-vimeo"
-                      href="https://player.vimeo.com/video/337293658?autoplay=1"
-                    >
-                      <img src={data[1]?.image.url} alt="image" />
-                      <div
-                        className="main"
-                        data-img-url={data[1]?.image?.url}
-                      />
-                    </a>
-                  </div>
-                  <div className="mobile_title">
-                    <h3>Ave Bottle</h3>
-                    <span>Vimeo</span>
-                  </div>
-                </div>
-              </li>
-              <li className="soundcloud grid-item">
-                <div className="inner">
-                  <div
-                    className="entry dizme_tm_portfolio_animation_wrap"
-                    data-title="Magic Art"
-                    data-category="Soundcloud"
-                  >
-                    <a
-                      className="soundcloude_link mfp-iframe audio"
-                      href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/471954807&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-                    >
-                      <img src={data[2]?.image?.url} alt="image" />
-                      <div
-                        className="main"
-                        data-img-url={data[2]?.image?.url}
-                      />
-                    </a>
-                  </div>
-                  <div className="mobile_title">
-                    <h3>Magic Art</h3>
-                    <span>Soundcloud</span>
-                  </div>
-                </div>
-              </li>
-              <li className="popup grid-item">
-                <div className="inner">
-                  <div
-                    className="entry dizme_tm_portfolio_animation_wrap"
-                    data-title="Scott Felix"
-                    data-category="Popup"
-                  >
-                    <a className="zoom" href="img/portfolio/5.jpg">
-                      <img src={data[3]?.image?.url} alt="image" />
-                      <div
-                        className="main"
-                        data-img-url={data[3]?.image?.url}
-                      />
-                    </a>
-                  </div>
-                  <div className="mobile_title">
-                    <h3>Blue Lemon</h3>
-                    <span>Popup</span>
-                  </div>
-                </div>
-              </li>
-              <li className="popup grid-item">
-                <div className="inner">
-                  <div
-                    className="entry dizme_tm_portfolio_animation_wrap"
-                    data-title="Art Stone"
-                    data-category="Popup"
-                  >
-                    <a className="zoom" href="img/portfolio/4.jpg">
-                      <img src={data[4]?.image?.url} alt="image" />
-                      <div
-                        className="main"
-                        data-img-url={data[4]?.image?.url}
-                      />
-                    </a>
-                  </div>
-                  <div className="mobile_title">
-                    <h3>Art Stone</h3>
-                    <span>Popup</span>
-                  </div>
-                </div>
-              </li>
-
-              <li className="detail grid-item" onClick={() => setPopup(true)}>
-                <div className="inner">
-                  <div
-                    className="entry dizme_tm_portfolio_animation_wrap"
-                    data-title="Global Evolution"
-                    data-category="Detail"
-                  >
-                    <a className="portfolio_popup" href="#">
-                      <img src={data[5]?.image?.url} alt="image" />
-                      <div
-                        className="main"
-                        data-img-url={data[5]?.image?.url}
-                      />
-                    </a>
-                  </div>
-                  <div className="mobile_title">
-                    <h3>Global Evolution</h3>
-                    <span>Detail</span>
-                  </div>
-                </div>
-              </li>
+                        className="entry dizme_tm_portfolio_animation_wrap"
+                        data-title={data?.title}
+                        data-category={data?.techStack}
+                      >
+                          <img src={data?.image?.url} alt="image" />
+                          <div
+                            className="main"
+                            data-img-url={data?.image?.url}
+                          />
+                      </div>
+                      <div className="mobile_title">
+                        <h3>{data?.title}</h3>
+                        <span>{data?.techStack}</span>
+                      </div>
+                    </div>
+                  </li>)
+                })
+              }
             </ul>
           </div>
         </div>

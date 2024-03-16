@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import SwiperCore, {
   Autoplay,
   EffectFade,
@@ -7,28 +7,15 @@ import SwiperCore, {
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { fatchData } from "../utilits";
+import UserContext from "../userContext/userContext";
 SwiperCore.use([Pagination, Navigation, EffectFade, Autoplay]);
 
 const Testimonial = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
+  const data1 = useContext(UserContext);
   useEffect(() => {
-    const fetchData = async()=>{
-      try {
-        const res = await fetch("https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae");
-        const data = await res.json();
-        if(res.ok){
-          setData(data.user.testimonials);
-        }
-        if(!res.ok){
-          console.log(data.success);
-        }
-      } 
-     catch (error) {
-        console.log(error);   
-      }
-  }
-  fetchData();
-}, []);
+    setData(data1?.testimonials.filter(item=>item.enabled)); //filtering based on enabled property from the API.
+}, [data1]);
   const props = {
     slidesPerView: 1,
     loop: true,

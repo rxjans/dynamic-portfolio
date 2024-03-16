@@ -1,23 +1,6 @@
 import { useEffect, useState } from "react";
 
 const ServicePopup = ({ data, open, close }) => {
-  const [image, setImage] = useState('');
-  const [loading, setLoading] = useState(true);
-  useEffect(()=>{
-    const fetchData = async()=>{
-      try {
-        if(data.image){
-          setImage(data.image);
-          console.log(data.image);
-          setLoading(false);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-   
-  },[data])
   
   return (
     <div className={`dizme_tm_modalbox ${open ? "opened" : ""}`}>
@@ -31,11 +14,11 @@ const ServicePopup = ({ data, open, close }) => {
         <div className="description_wrap">
           <div className="service_popup_informations">
             <div className="image">
-              <img src={image.url} alt="image" />
+              <img src={data?.image?.url} alt="image" />
               <div
                 className="main"
-                data-img-url={data && data}
-                style={{ backgroundImage: `url(${data && image.url})` }}
+                data-img-url={data && data?.image?.url}
+                style={{ backgroundImage: `url(${data && data?.image?.url})` }}
               />
             </div>
             <div className="main_title">

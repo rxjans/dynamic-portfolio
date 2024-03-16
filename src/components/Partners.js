@@ -1,30 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fatchData } from "../utilits";
+import UserContext from "../userContext/userContext";
 const Partners = ({ dark }) => {
   const [data, setData] = useState([]);
+  const data1 = useContext(UserContext);
   useEffect(() => {
-    const fetchData = async()=>{
-      try {
-        const res = await fetch("https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae");
-        const data = await res.json();
-        if(res.ok){
-          setData(data.user.social_handles);
-        }
-        if(!res.ok){
-          console.log(data.success);
-        }
-      } 
-     catch (error) {
-        console.log(error);   
-      }
-  }
-  fetchData();
-}, []);
+    setData(data1?.social_handles?.filter(item=> item.enabled)) //filtering handles based on enabled property from the api.
+}, [data1]);
   
   const headingStyle = {
     textAlign: 'center', // Align text in the center
     marginBottom: '40px'
   };
+  
   return (
     <div className="dizme_tm_section">
     <h2 style={headingStyle}> Connect with Me!</h2>

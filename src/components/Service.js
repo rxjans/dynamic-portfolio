@@ -1,30 +1,16 @@
 import parse from "html-react-parser";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fatchData } from "../utilits";
 import ServicePopup from "./popup/ServicePopup";
-
+import UserContext from "../userContext/userContext";
 const Service = ({ dark }) => {
   const [data, setData] = useState([]);
+  const data1 = useContext(UserContext); 
   const [popupdata, setPopupdata] = useState({});
   const [popup, setPopup] = useState(false);
+  
   useEffect(() => {
-    const fetchData = async()=>{
-      try {
-        const res = await fetch("https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae");
-        const data = await res.json();
-        if(res.ok){
-          setData(data.user.services);
-          console.log(data.user.services);
-        }
-        if(!res.ok){
-          console.log(data.success);
-        }
-      } 
-     catch (error) {
-        console.log(error);   
-      }
-  }
-  fetchData();
+    setData(data1?.services.filter(item=>item.enabled));
     setTimeout(() => {
       let VanillaTilt = require("vanilla-tilt");
       VanillaTilt.init(document.querySelectorAll(".tilt-effect"), {
@@ -34,7 +20,7 @@ const Service = ({ dark }) => {
         transition: true,
       });
     }, 1000);
-  }, []);
+  }, [data1]);
 
   const onClick = (index) => {
     setPopup(true);
