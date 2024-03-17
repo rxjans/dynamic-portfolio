@@ -69,7 +69,7 @@ const Testimonial = () => {
                       </div>
                       <div className="short">
                         <div className="image">
-                          <img style={{borderRadius: "100%"}} src={data.image.url} />
+                          <img style={{borderRadius: "100%"}} alt="image" src={data.image.url} />
                           <div className="main" data-img-url={data.image.url} />
                         </div>
                         <div className="detail">
