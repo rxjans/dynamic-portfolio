@@ -3556,10 +3556,29 @@ input[type="number"] {
   z-index: 1;
 }
 
+@media only screen and (min-width: 12px) and (max-width: 547px){
+  .hidden1{
+    display: none;
+  }
+  .dizme_tm_services{
+    padding-top: 50px;
+  }
+  .dizme_tm_portfolio .portfolio_filter ul li {
+    margin: 0px 20px 0px 0px;
+    display: inline-block;
+  }
+
+  .dizme_tm_portfolio{
+    padding-top: 70px;
+  }
+}
+
 @media only screen and (max-width: 547px) {
   .hello{
     margin-top: 0%;
   }
+
+
   .image-container {
     position: relative;
     max-height: 240px;
@@ -3594,9 +3613,28 @@ input[type="number"] {
     object-fit: cover;
     z-index: 1;
   }
+  .hidden{
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 547px) and (max-width: 1040px) {
+  .hidden1{
+    display: none;
+  }
+
+  .dizme_tm_portfolio .portfolio_filter ul li {
+    margin: 0px 30px 0px 0px;
+    display: inline-block;
+  }
+
+  .dizme_tm_portfolio{
+    padding-top: 70px;
+  }
+
+  .dizme_tm_services{
+    padding-top: 50px;
+  }
 
   .image-container {
     position: relative;

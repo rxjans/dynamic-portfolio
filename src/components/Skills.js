@@ -50,7 +50,7 @@ const Skills = ({ dark }) => {
                   ))}
               </div>
             </div>
-            <div className="right">
+            <div className="right hidden1">
               <div className="image-container1">
                 <img className="" src={data?.about?.avatar?.url} alt="image" />  
               </div>
