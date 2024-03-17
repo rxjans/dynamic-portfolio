@@ -87,8 +87,8 @@ const Portfolio = () => {
             </a>
           </li>
           {
-            data && techStack?.map((data)=>{
-              return(<li>
+            data && techStack?.map((data, i)=>{
+              return(<li key={i}>
                 <a
                   className={`c-pointer ${activeBtn(data)}`}
                   onClick={handleTechStackFilterChange(data)}
