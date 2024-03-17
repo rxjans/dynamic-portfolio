@@ -2,9 +2,20 @@ import parse from "html-react-parser";
 import { useEffect, useState, useContext } from "react";
 import { fatchData } from "../utilits";
 import UserContext from "../userContext/userContext";
+import PreLoader from "../components/preloader";
+
 const Home = ({ dark }) => {
  const data = useContext(UserContext);
+ const [loading, setLoading] = useState(true);
+ 
+ useEffect(()=>{
+  setLoading(false);
+ },[data])
 
+ if (loading) {
+  return <PreLoader />
+    
+}
   return (
     <div className="dizme_tm_section" id="home">
       <div className="dizme_tm_hero">

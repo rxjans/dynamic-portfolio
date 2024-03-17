@@ -2,12 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { fatchData } from "../utilits";
 import UserContext from "../userContext/userContext";
 const Partners = ({ dark }) => {
-  const [data, setData] = useState([]);
-  const data1 = useContext(UserContext);
-  useEffect(() => {
-    setData(data1?.social_handles?.filter(item=> item.enabled)) //filtering handles based on enabled property from the api.
-}, [data1]);
-  
+  const data = useContext(UserContext);
   const headingStyle = {
     textAlign: 'center', // Align text in the center
     marginBottom: '40px'
@@ -21,7 +16,7 @@ const Partners = ({ dark }) => {
           <div className="partners_inner">
             <ul>
               {data &&
-                data.map((img, i) => (
+                data?.social_handles?.filter(item=> item.enabled).map((img, i) => (
                   <li
                     className="wow fadeIn"
                     data-wow-duration="1s"

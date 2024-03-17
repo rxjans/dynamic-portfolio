@@ -2,48 +2,64 @@ import { useEffect, useState, useContext } from "react";
 import { aTagClick, fatchData } from "../utilits";
 import BlogPopUp from "./popup/BlogPopUp";
 import UserContext from "../userContext/userContext";
+import Preloader from "../components/preloader";
 
 const News = () => {
   const data1 = useContext(UserContext);
-  const [educationData, setEducationData] = useState([]);
-  const [workData, setWorkData] = useState([]);
-  const [popupData, setPopupData] = useState([]);
+  const [popupData, setPopupData] = useState(null);
   const [popup, setPopup] = useState(false);
-  const [active, setActive] = useState('Work');
-
+  const [activeTab, setActiveTab] = useState('Work');
+  const [timelineData, setTimelineData] = useState({ education: [], work: [] });
+  const [loading, setLoading] = useState(true);
+ 
   useEffect(()=>{
-    setEducationData(data1?.timeline?.filter(item => item.forEducation));
-    setWorkData(data1?.timeline?.filter(item => !item.forEducation)); //filtering data based on forEducation property.
-},[data1])
+   setLoading(false);
+  },[data1])
+ 
+  
+  useEffect(() => {
+    setTimelineData({
+      education: data1?.timeline?.filter(item => item.forEducation)?.sort((a, b) => a.sequence - b.sequence),
+      work: data1?.timeline?.filter(item => !item.forEducation)?.sort((a, b) => a.sequence - b.sequence) //filtered based on enabled and sorted based on sequence
+    });
+  }, [data1]);
 
   useEffect(() => {
-  aTagClick();
-  }, [workData]);
+    aTagClick();
+  }, [timelineData.work]);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+
+  if (loading) {
+    return <Preloader />
+      
+  }
 
   return (
     <div className="dizme_tm_section" id="blog">
       <BlogPopUp open={popup} data={popupData} close={() => setPopup(false)} />
       <div className="dizme_tm_news">
         <div className="container">
+        {/*Main*/}
           <div className="dizme_tm_main_title" data-align="center">
             <span>My Timeline</span>
-            <h3>{`Work Experience and Achievements`}</h3>
+            <h3>{activeTab === 'Work' ? 'Work Experience and Achievements' : 'Education'}</h3>
           </div>
           <div className=" ctr wow fadeInUp ">
-              <a onClick={()=>setActive('Work')} className={`btn c-pointer ${active === 'Work' && 'active'}`}>
-                Work Experience
-              </a>
-              <a onClick={()=>setActive('Edu')} className={`btn c-pointer ${active === 'Edu' && 'active'}`}>
-                Education
-              </a>
+            <a onClick={() => handleTabChange('Work')} className={`btn c-pointer ${activeTab === 'Work' && 'active'}`}>
+              Work Experience
+            </a>
+            <a onClick={() => handleTabChange('Edu')} className={`btn c-pointer ${activeTab === 'Edu' && 'active'}`}>
+              Education
+            </a>
           </div>
           <div className="news_list">
-
-          {
-            active === 'Work' ? 
-            (<ul>
-              {workData &&
-                workData.map((timeline, i) => (
+            <ul>
+              {activeTab === 'Work' ? (
+                timelineData?.work?.map((timeline, i) => (
+                  // Render Work Timeline Items
                   <li className="wow fadeInUp" data-wow-duration="1s" key={i}>
                     <div className="list_inner">
                       <div className="image">
@@ -56,8 +72,8 @@ const News = () => {
                           }}
                         />
                         <div className="date">
-                          <h3>{workData && new Date(timeline.startDate).toLocaleDateString()}</h3>
-                          <span>to {workData && new Date(timeline.endDate).getUTCFullYear()}</span>
+                          <h3>{timelineData?.work && new Date(timeline.startDate).toLocaleDateString()}</h3>
+                          <span>to {timelineData?.work && new Date(timeline.endDate).getUTCFullYear()}</span>
                         </div>
                         <a
                           className="dizme_tm_full_link"
@@ -80,8 +96,8 @@ const News = () => {
                       <div className="news_hidden_details">
                         <div className="news_popup_informations">
                           <div className="text">
-                            {workData && data1.bulletPoints &&
-                              workData?.bulletPoints.map((timeline, i) => (
+                            {data1.bulletPoints &&
+                              timelineData?.work?.bulletPoints.map((timeline, i) => (
                                 <p key={i}>{timeline.bulletPoints}</p>
                               ))}
                           </div>
@@ -89,12 +105,10 @@ const News = () => {
                       </div>
                     </div>
                   </li>
-                ))}
-            </ul>)
-            :
-            (<ul>
-              {educationData &&
-                educationData.map((timeline, i) => (
+                ))
+              ) : (
+                timelineData?.education?.map((timeline, i) => (
+                  // Render Education Timeline Items
                   <li className="wow fadeInUp" data-wow-duration="1s" key={i}>
                     <div className="list_inner">
                       <div className="image">
@@ -107,8 +121,8 @@ const News = () => {
                           }}
                         />
                         <div className="date">
-                          <h3>{educationData && new Date(timeline.startDate).toLocaleDateString()}</h3>
-                          <span>to {educationData && new Date(timeline.endDate).getUTCFullYear()}</span>
+                          <h3>{timelineData?.education && new Date(timeline.startDate).toLocaleDateString()}</h3>
+                          <span>to {timelineData?.education && new Date(timeline.endDate).getUTCFullYear()}</span>
                         </div>
                         <a
                           className="dizme_tm_full_link"
@@ -131,8 +145,8 @@ const News = () => {
                       <div className="news_hidden_details">
                         <div className="news_popup_informations">
                           <div className="text">
-                            {educationData && educationData?.bulletPoints &&
-                              educationData.bulletPoints.map((timeline, i) => (
+                            {timelineData?.education && timelineData?.education?.bulletPoints &&
+                              timelineData?.education?.bulletPoints.map((timeline, i) => (
                                 <p key={i}>{timeline.bulletPoints}</p>
                               ))}
                           </div>
@@ -140,12 +154,12 @@ const News = () => {
                       </div>
                     </div>
                   </li>
-                ))}
-            </ul>)
-          }
-            
+                ))
+              )}
+            </ul>
           </div>
         </div>
+        {/* Brushes */}
         <div className="brush_1 wow zoomIn" data-wow-duration="1s">
           <img src="img/brushes/news/1.png" alt="image" />
         </div>

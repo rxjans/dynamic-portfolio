@@ -1,12 +1,19 @@
 import { useEffect, useState, useContext } from "react";
 import { fatchData } from "../utilits";
 import UserContext from "../userContext/userContext";
+import Preloader from "../components/preloader";
 const Contact = () => {
-  const [data, setData] = useState({});
-  const data1 = useContext(UserContext);
-  useEffect(() => {
-    setData(data1?.about)
-}, [data1]);
+  const data = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
+ 
+  useEffect(()=>{
+   setLoading(false);
+  },[data])
+ 
+  if (loading) {
+   return <Preloader />  
+ }
+
   return (
     <div className="dizme_tm_section" id="contact">
       <div className="dizme_tm_contact">
@@ -30,7 +37,7 @@ const Contact = () => {
                       </div>
                       <div className="short">
                         <h3>Address</h3>
-                        <span>{data.address}</span>
+                        <span>{data?.about?.address}</span>
                       </div>
                     </div>
                   </li>
@@ -42,7 +49,7 @@ const Contact = () => {
                       <div className="short">
                         <h3>Email</h3>
                         <span>
-                          <a href="#">{data1?.email}</a>
+                          <a href="#">{data?.email}</a>
                         </span>
                       </div>
                     </div>
@@ -54,7 +61,7 @@ const Contact = () => {
                       </div>
                       <div className="short">
                         <h3>Phone</h3>
-                        <span>{data.phoneNumber}</span>
+                        <span>{data?.about?.phoneNumber}</span>
                       </div>
                     </div>
                   </li>

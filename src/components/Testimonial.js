@@ -11,11 +11,11 @@ import UserContext from "../userContext/userContext";
 SwiperCore.use([Pagination, Navigation, EffectFade, Autoplay]);
 
 const Testimonial = () => {
-  const [data, setData] = useState();
-  const data1 = useContext(UserContext);
-  useEffect(() => {
-    setData(data1?.testimonials.filter(item=>item.enabled)); //filtering based on enabled property from the API.
-}, [data1]);
+  
+  const data = useContext(UserContext);
+//   useEffect(() => {
+//     setData(data?.testimonials.filter(item=>item.enabled)); //filtering based on enabled property from the API.
+// }, [data1]);
   const props = {
     slidesPerView: 1,
     loop: true,
@@ -23,6 +23,11 @@ const Testimonial = () => {
       el: ".owl-dots",
       clickable: true,
     },
+  };
+
+  const convertToWord = (number) => {
+    const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+    return ones[number];
   };
   
   return (
@@ -41,7 +46,7 @@ const Testimonial = () => {
             <div className="in">
               <Swiper {...props} className="">
                 {data &&
-                  data.map((data, i) => (
+                  data?.testimonials.filter(item=>item.enabled).map((data, i) => (
                     <SwiperSlide key={i}>
                       <div className="icon">
                         <svg
@@ -83,51 +88,37 @@ const Testimonial = () => {
               <div className="owl-dots"></div>
             </div>
             <div className="left_details">
-              <div
-                className="det_image one wow fadeIn"
-                data-wow-duration="1s"
-                data-img-url="img/testimonials/2.jpg"
-              />
-              <div
-                className="det_image two wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.2s"
-                data-img-url="img/testimonials/1.jpg"
-              />
-              <div
-                className="det_image three wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.4s"
-                data-img-url="img/testimonials/3.jpg"
-              />
-              <div
-                className="det_image four wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.6s"
-                data-img-url="img/testimonials/4.jpg"
-              />
+            {
+              data &&
+                  data?.testimonials?.filter(item=>item.enabled).map((data, i) => (
+                    <div key={i}
+                      className={`det_image ${convertToWord(i)} wow fadeIn`}
+                      data-wow-duration="1s"
+                      data-img-url={data?.image?.url}
+                      
+                    />
+                    
+                  ))
+                  
+            }
               <span className="circle green animPulse" />
               <span className="circle yellow animPulse" />
               <span className="circle border animPulse" />
             </div>
             <div className="right_details">
-              <div
-                className="det_image one wow fadeIn"
-                data-wow-duration="1s"
-                data-img-url="img/testimonials/5.jpg"
-              />
-              <div
-                className="det_image two wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.2s"
-                data-img-url="img/testimonials/6.jpg"
-              />
-              <div
-                className="det_image three wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.4s"
-                data-img-url="img/testimonials/7.jpg"
-              />
+              {
+                data &&
+                    data?.testimonials?.filter(item=>item.enabled).map((data, i) => (
+                      <div key={i}
+                        className={`det_image ${convertToWord(i)} wow fadeIn`}
+                        data-wow-duration="1s"
+                        data-img-url={data?.image?.url}
+                        
+                      />
+                      
+                    ))
+                    
+              }
               <span className="circle yellow animPulse" />
               <span className="circle purple animPulse" />
               <span className="circle border animPulse" />

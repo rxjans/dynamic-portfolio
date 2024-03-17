@@ -3,23 +3,25 @@ import { useEffect, useRef, useState, useContext } from "react";
 import { dataImage, portfolioHover } from "../utilits";
 import DetailsPopup from "./popup/DetailsPopup";
 import UserContext from "../userContext/userContext";
+import PreLoader from "../components/preloader";
 import WOW from "wowjs";
 
 const Portfolio = () => {
   const data1 = useContext(UserContext);
   const [data, setData] = useState([]);
   const [techStack, setTechStack] = useState();
-
+  const [loading, setLoading] = useState(true);
   useEffect(()=>{
-      setData(data1?.projects?.filter(item => item.enabled)); //filtering data based on enabled property.
-      
+      setData(data1?.projects?.filter(item => item.enabled)?.sort((a, b) => a.sequence - b.sequence)); //filtering data based on enabled property.
+      setLoading(false);
   },[data1])
 
   useEffect(() => {
       dataImage();
       portfolioHover();  
-      let trimStack = data[0]?.techStack?.map(item=>item.replace(/\s/g, '')); //remove white spaces.
-      setTechStack(trimStack);  
+      const allTechStacks = data?.flatMap(project => project.techStack);
+      const uniqueTechStacks = Array.from(new Set(allTechStacks.map(tech => tech.replace(/\s/g, ''))));
+      setTechStack(uniqueTechStacks);
   },[data]);
 
 
@@ -63,7 +65,10 @@ const Portfolio = () => {
   const [popup, setPopup] = useState(false);
   const [popupData, setPopupData] = useState();
 
-  
+  if (loading) {
+    return <PreLoader />
+      
+  }
   return (
     <div className="dizme_tm_section" id="portfolio">
       <DetailsPopup open={popup} data={popupData} close={() => setPopup(false)} />

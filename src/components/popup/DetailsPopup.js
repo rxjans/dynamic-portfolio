@@ -1,9 +1,19 @@
 const DetailsPopup = ({ open, close, data }) => {
+
+  const opacityLinks ={
+    opacity: ".2"
+  }
   return (
     <div className={`dizme_tm_modalbox ${open ? "opened" : ""}`}>
       <div className="box_inner">
         <div className="close">
-          <a href="#" onClick={(e) => {e.preventDefault(); close()}}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              close();
+            }}
+          >
             <i className="icon-cancel" />
           </a>
         </div>
@@ -19,6 +29,55 @@ const DetailsPopup = ({ open, close, data }) => {
             </div>
             <div className="portfolio_main_title">
               <h3>{data?.title}</h3>
+              <p>
+                {data?.liveurl !== "" ? (
+                  <>
+                    {" "}
+                    <a href={data?.liveurl} title="Live Preview">
+                      <img
+                        width={24}
+                        height={15}
+                        src="https://static.vecteezy.com/system/resources/previews/009/393/680/non_2x/eye-icon-sign-symbol-design-free-png.png"
+                      />
+                    </a>{" "}
+                    <span> </span>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <a href={data?.liveurl} title="Live Preview (Unavailable)">
+                      <img style={opacityLinks}
+                        width={24}
+                        height={15}
+                        src="https://static.vecteezy.com/system/resources/previews/009/393/680/non_2x/eye-icon-sign-symbol-design-free-png.png"
+                      />
+                    </a>{" "}
+                    <span> </span>
+                  </>
+                )}
+
+                {data?.githuburl !== "" ? (
+                  <>
+                    {" "}
+                    <a href={data?.liveurl} title="GitHub Repo">
+                      <img
+                        width={20}
+                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                      />
+                    </a>{" "}
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <a style={opacityLinks} href={data?.liveurl} title="GitHub Repo (Unavailable)">
+                      <img
+                        width={20}
+                        src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                      />
+                    </a>{" "}
+                  </>
+                )}
+              </p>
               <span>
                 <a href="#">Details</a>
               </span>
@@ -27,32 +86,10 @@ const DetailsPopup = ({ open, close, data }) => {
             <div className="main_details">
               <div className="textbox">
                 <p>
-                  {data?.description !== '' ? data?.description : "No Description available"}
+                  {data?.description !== ""
+                    ? data?.description
+                    : "No Description available"}
                 </p>
-                <p>
-                  {data?.liveurl !== '' ? (
-                    <>
-                      Checkout the live preview here:{" "}
-                      <a href={data?.liveurl} >
-                        {data?.liveurl}
-                      </a>{" "}
-                    </>
-                  ) : (
-                    "No live preview available"
-                  )}
-                </p>
-                <p>
-                  {data?.githuburl !== '' ? (
-                    <>
-                      Checkout the Github Repo:{" "}
-                      <a href={data?.githuburl} >
-                        {data?.githuburl}
-                      </a>{" "}
-                    </>
-                  ) : (
-                    "No Github Repo available"
-                  )}
-              </p>
               </div>
               <div className="detailbox">
                 <ul>
@@ -63,7 +100,9 @@ const DetailsPopup = ({ open, close, data }) => {
                   <li>
                     <span className="first">Tech Stack</span>
                     <span>
-                      <span>{data?.techStack ? data.techStack : "Unavailable"}</span>
+                      <span>
+                        {data?.techStack ? data.techStack : "Unavailable"}
+                      </span>
                     </span>
                   </li>
                 </ul>

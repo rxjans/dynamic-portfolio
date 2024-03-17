@@ -21,7 +21,6 @@ const Portfolio = dynamic(() => import("../src/components/Portfolio"), {
 const Index = () => {
   const data = useContext(UserContext);
 
-
   return (
     <Layout>
       <Head>

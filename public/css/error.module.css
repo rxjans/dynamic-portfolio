@@ -39,3 +39,8 @@
 .button:hover {
     background-color: #0056b3;
 }
+
+svg.loading {
+    width: 100px;
+    height: 100px;
+}

@@ -2,11 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { activeSkillProgress, fatchData } from "../utilits";
 import UserContext from "../userContext/userContext";
 const Skills = ({ dark }) => {
-  const [userData, setUserData] = useState([]);
   const data = useContext(UserContext);
-  useEffect(() => {
-    setUserData(data?.skills?.filter(item => item.enabled)); //filtering skills based on enabled property from the API.
-}, [data]);
   useEffect(() => {
     window.addEventListener("scroll", activeSkillProgress);
   }, []);
@@ -33,8 +29,8 @@ const Skills = ({ dark }) => {
                 className="dodo_progress wow fadeInUp"
                 data-wow-duration="1s"
               >
-                {userData &&
-                  userData.map((skill, i) => (
+                {data &&
+                  data?.skills?.filter(item => item.enabled).map((skill, i) => (
                     <div
                       className="progress_inner skillsInner___"
                       data-value={skill.percentage}
@@ -55,7 +51,9 @@ const Skills = ({ dark }) => {
               </div>
             </div>
             <div className="right">
-              <img src={`img/skills/${dark ? 2 : 1}.jpg`} alt="image" />
+              <div className="image-container1">
+                <img className="" src={data?.about?.avatar?.url} alt="image" />  
+              </div>
             </div>
           </div>
         </div>
