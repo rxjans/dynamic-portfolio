@@ -3506,101 +3506,167 @@ input[type="number"] {
 .active{
   color: #e26c23;
 }
-/* section {
-  width: 100%;
- }
- .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  column-gap: 20px;
- }
- .container img {
-  width: 420px;
- }
- .text {
-  display: block;
-  padding: 40px 40px;
-  width: 450px;
- }
 
- .text h1 {
-  color: #00c2cb;
-  font-size: 35px;
-  font-weight: 700;
-  margin-bottom: 15px;
- }
- .text p {
-  font-size: 15px;
-  color: #e0ffff;
-  margin-bottom: 15px;
-  line-height: 1.5rem;
-  margin-bottom: 15px;
- }
+.image-container {
+  position: absolute;
+  right: 0;
+  width: 40%; 
+  height: 600px; 
+  padding-left: 100px;
+}
 
- .input-box{
-  position: relative;
-  display: flex;
-  width: 100%;
- }
- .input-box input{
-  width: 85%;
-  height: 40px;
-  padding: 5px 15px;
-  font-size: 16px;
-  color: #22232e;
-  border-radius: 5px 0px 0px 5px;
-  border: 2px solid #42455a;
-  outline: none;
- }
- .input-box button{
-  display: flex;
-  width: 15%;
-  border: 1px solid #004958;
-  border-radius: 0px 5px 5px 0px;
-  background: #004958;
-  color: #e0ffff;
-  font-size: 22px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;  
- }
- .menu{
-  display: flex;
-  flex-direction: column;
-  margin-top: 15px;
-  margin-left: 30px;
- }
- .menu li a{
-  display: flex;
-  font-size: 1rem;
-  color: #00c2cb;
-  transition: 0.1s;
- }
 
- @media screen and (max-width:600px) {
-  .container{
-    display: flex;
-    flex-direction: column-reverse;
+.rounded{
+  border: 4px solid #f75023;
+  border-radius: 100px 0px 100px 0px;
+  height: 800px;
+}
+
+.mask-image{
+  background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+  mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 200px;
+  min-height: 390px;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  background-size: cover; 
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  z-index: 0;
+}
+
+.masked-image {
+  display: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(3%, -10%);
+  width: 90%;
+  height: 100%;
+  min-width: 300px;
+  min-height: 390px;
+  object-fit: cover;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 547px) {
+  .hello{
+    margin-top: 0%;
   }
-  .text,.image{
+  .image-container {
+    position: relative;
+    max-height: 240px;
+    max-width: 300px;
+    margin-top: 5%;
+    margin-left: 15%;
     width: 100%;
-  } 
-  .container{
+    height: 100%;
+  }
+  .mask-image{
+    background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    position: absolute;
+    width: 70%;
+    min-width: 250px;
+    min-height: 200px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    background-size: cover; 
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .masked-image {
+    display: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-5%, -16%);
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+}
+
+@media only screen and (min-width: 547px) and (max-width: 1040px) {
+
+  .image-container {
+    position: relative;
+    max-height: 340px;
+    max-width: 500px;
+    margin-top: 5%;
+    margin-left: 180px;
+    width: 100%;
+    height: 100%;
+  }
+  .mask-image{
+    background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    position: absolute;
+    width: 70%;
+    min-width: 250px;
+    min-height: 200px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    background-size: cover; 
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .masked-image {
+    display: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(7%, -8%);
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+}
+
+@media only screen and (min-width: 1040px) and (max-width: 1600px) {
+
+  .image-container {
+    position: absolute;
+    right: 0;
+    width: 40%; 
+    height: 600px; /* or specify a fixed height */
+    padding-left: 10px;
+    margin-right: 50px;
+    margin-top: 140px;
+  }
+  
+  .mask-image{
+    background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    position: absolute;
+    top: 0;
+    left: 0;
     min-width: 200px;
-    padding: 40px 0px;
+    min-height: 390px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    background-size: cover; 
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    z-index: 0;
   }
-  .text{
-    display: block;
-    width: 100%;
-    padding: 20px 40px;
+  
+  .masked-image {
+    display: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(3%, -10%);
+    width: 90%;
+    height: 100%;
+    min-width: 300px;
+    min-height: 390px;
+    object-fit: cover;
+    z-index: 1;
   }
-  .image{
-    display: flex;
-    width: 200px;
-    align-self: center;
-    justify-content: center;
-    margin: auto;
-  }
- } */
+}

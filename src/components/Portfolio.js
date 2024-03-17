@@ -8,15 +8,18 @@ import WOW from "wowjs";
 const Portfolio = () => {
   const data1 = useContext(UserContext);
   const [data, setData] = useState([]);
-
+  const [techStack, setTechStack] = useState();
 
   useEffect(()=>{
       setData(data1?.projects?.filter(item => item.enabled)); //filtering data based on enabled property.
+      
   },[data1])
 
   useEffect(() => {
       dataImage();
-      portfolioHover();
+      portfolioHover();  
+      let trimStack = data[0]?.techStack?.map(item=>item.replace(/\s/g, '')); //remove white spaces.
+      setTechStack(trimStack);  
   },[data]);
 
 
@@ -70,8 +73,7 @@ const Portfolio = () => {
             <span>Portfolio</span>
             <h3>My Amazing Works</h3>
             <p>
-              Most common methods for designing websites that work well on
-              desktop is responsive and adaptive design
+              {data?.quote ? data?.quote : "Most common methods for designing websites that work well on desktop is responsive and adaptive design"}
             </p>
           </div>
           <div className="portfolio_filter">
@@ -84,38 +86,18 @@ const Portfolio = () => {
               All
             </a>
           </li>
-          <li>
-            <a
-              className={`c-pointer ${activeBtn("Reactjs")}`}
-              onClick={handleTechStackFilterChange("Reactjs")}
-            >
-              React
-            </a>
-          </li>
-          <li>
-            <a
-              className={`c-pointer ${activeBtn("Nextjs")}`}
-              onClick={handleTechStackFilterChange("Nextjs")}
-            >
-              Next
-            </a>
-          </li>
-          <li>
-            <a
-              className={`c-pointer ${activeBtn("Mern")}`}
-              onClick={handleTechStackFilterChange("Mern")}
-            >
-              MERN
-            </a>
-          </li>
-          <li>
-            <a
-              className={`c-pointer ${activeBtn("CSS")}`}
-              onClick={handleTechStackFilterChange("CSS")}
-            >
-              CSS
-            </a>
-          </li>
+          {
+            data && techStack?.map((data)=>{
+              return(<li>
+                <a
+                  className={`c-pointer ${activeBtn(data)}`}
+                  onClick={handleTechStackFilterChange(data)}
+                >
+                  {data}
+                </a>
+              </li>)
+            })
+          }
         </ul>
       </div>
           <div className="dizme_tm_portfolio_titles" />

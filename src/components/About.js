@@ -10,11 +10,11 @@ const About = ({ dark }) => {
           <div className="wrapper">
             <div className="left">
               <div className="image">
-                <img src={`img/about/${dark ? 2 : 1}.jpg`} alt="image" />
+                <img className="rounded" src={`${data?.about?.avatar?.url}`} alt="image" />
                 <div className="numbers year">
                   <div className="wrapper">
                     <h3>
-                      <Counter end={18} />
+                      <Counter end={data?.about?.exp_year} />
                     </h3>
                     <span className="name">
                       Years of
@@ -26,7 +26,7 @@ const About = ({ dark }) => {
                 <div className="numbers project">
                   <div className="wrapper">
                     <h3>
-                      <Counter end={9} />K
+                      <Counter end={data?.about?.some_total} />
                     </h3>
                     <span className="name">
                       Total

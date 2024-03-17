@@ -39,10 +39,11 @@ const Home = ({ dark }) => {
                 </div>
               </div>
             </div>
-            <div className="avatar">
-              <div className="image">
+            <div className="image-container">
+              <div className="mask-image">
                 <img
-                  src={data && data.img ? data.img : "/img/slider/avatar.png"}
+                className="masked-image"
+                  src={data && data?.about?.avatar ? data?.about?.avatar?.url : "/img/slider/avatar.png"}
                   alt="image"
                 />
                 {data &&

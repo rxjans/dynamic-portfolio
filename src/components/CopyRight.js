@@ -1,4 +1,7 @@
+import { useContext } from "react";
+import UserContext from "../userContext/userContext";
 const CopyRight = ({ brandName }) => {
+  const data = useContext(UserContext);
   return (
     <div className="dizme_tm_section">
       <div className="dizme_tm_copyright">
@@ -12,9 +15,9 @@ const CopyRight = ({ brandName }) => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {brandName && brandName}
+                  {data?.username}
                 </a>{" "}
-                © {new Date().getFullYear()}
+                © {new Date(data?.createdAt).getFullYear()}
               </p>
             </div>
             <div className="right wow fadeInRight" data-wow-duration="1s">
