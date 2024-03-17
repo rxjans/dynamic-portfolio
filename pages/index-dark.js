@@ -12,7 +12,7 @@ import Service from "../src/components/Service";
 import Skills from "../src/components/Skills";
 import Testimonial from "../src/components/Testimonial";
 import Layout from "../src/layout/Layout";
-import ErrorHandler from "../src/components/errorHandler/ErrorHandler";
+
 const Portfolio = dynamic(() => import("../src/components/Portfolio"), {
   ssr: false,
 });
