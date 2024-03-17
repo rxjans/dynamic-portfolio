@@ -16,7 +16,7 @@ const News = () => {
     setWorkData(data1?.timeline?.filter(item => !item.forEducation)); //filtering data based on forEducation property.
 },[data1])
 
-  useEffect(async () => {
+  useEffect(() => {
   aTagClick();
   }, [workData]);
 
