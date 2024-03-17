@@ -35,6 +35,7 @@ const DetailsPopup = ({ open, close, data }) => {
                     {" "}
                     <a href={data?.liveurl} title="Live Preview">
                       <img
+                        alt="live preview"
                         width={24}
                         height={15}
                         src="https://static.vecteezy.com/system/resources/previews/009/393/680/non_2x/eye-icon-sign-symbol-design-free-png.png"
@@ -47,6 +48,7 @@ const DetailsPopup = ({ open, close, data }) => {
                     {" "}
                     <a href={data?.liveurl} title="Live Preview (Unavailable)">
                       <img style={opacityLinks}
+                        alt="live preview"
                         width={24}
                         height={15}
                         src="https://static.vecteezy.com/system/resources/previews/009/393/680/non_2x/eye-icon-sign-symbol-design-free-png.png"
@@ -61,6 +63,7 @@ const DetailsPopup = ({ open, close, data }) => {
                     {" "}
                     <a href={data?.liveurl} title="GitHub Repo">
                       <img
+                        alt="github"
                         width={20}
                         src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
                       />
@@ -71,6 +74,7 @@ const DetailsPopup = ({ open, close, data }) => {
                     {" "}
                     <a style={opacityLinks} href={data?.liveurl} title="GitHub Repo (Unavailable)">
                       <img
+                        alt="github"
                         width={20}
                         src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
                       />
