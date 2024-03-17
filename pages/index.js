@@ -12,14 +12,13 @@ import Skills from "../src/components/Skills";
 import Testimonial from "../src/components/Testimonial";
 import Layout from "../src/layout/Layout";
 import UserContext from "../src/userContext/userContext";
-import {useContext} from 'react';
+
 
 const Portfolio = dynamic(() => import("../src/components/Portfolio"), {
   ssr: false,
 });
 
 const Index = () => {
-  const data = useContext(UserContext);
 
 
   return (
@@ -36,10 +35,7 @@ const Index = () => {
       <About />
       {/* /ABOUT */}
       {/* PORTFOLIO */}
-      {
-        data?.projects[0] &&
       <Portfolio />
-      }
       {/* /PORTFOLIO */}
       {/* SKILLS */}
       <Skills />
