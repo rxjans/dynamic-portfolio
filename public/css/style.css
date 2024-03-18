@@ -3562,206 +3562,10 @@ input[type="number"] {
   z-index: 1;
 }
 
-@media only screen and (min-width: 12px) and (max-width: 547px){
-  .hidden1{
-    display: none;
-  }
-  .dizme_tm_services{
-    padding-top: 50px;
-  }
-  .dizme_tm_portfolio .portfolio_filter ul li {
-    margin: 0px 20px 0px 0px;
-    display: inline-block;
-  }
-
-  .dizme_tm_portfolio{
-    padding-top: 70px;
-  }
-}
-
-@media only screen and (max-width: 547px) {
-  .hello{
-    margin-top: 0%;
-  }
-
-
-  .image-container {
-    position: relative;
-    max-height: 240px;
-    max-width: 300px;
-    margin-top: 5%;
-    margin-left: 15%;
-    width: 100%;
-    height: 100%;
-  }
-  .mask-image{
-    background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
-    mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
-    position: absolute;
-    width: 70%;
-    min-width: 250px;
-    min-height: 200px;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    background-size: cover; 
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    z-index: 0;
-    overflow: hidden;
-  }
-  .masked-image {
-    display: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-5%, -16%);
-    width: 80%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-  }
-  .hidden{
-    display: none;
-  }
-}
-
-@media only screen and (min-width: 547px) and (max-width: 1040px) {
-  .hidden1{
-    display: none;
-  }
-
-  .dizme_tm_portfolio .portfolio_filter ul li {
-    margin: 0px 30px 0px 0px;
-    display: inline-block;
-  }
-
-  .dizme_tm_portfolio{
-    padding-top: 70px;
-  }
-
-  .dizme_tm_services{
-    padding-top: 50px;
-  }
-
-  .image-container {
-    position: relative;
-    max-height: 340px;
-    max-width: 500px;
-    margin-top: 5%;
-    margin-left: 180px;
-    width: 100%;
-    height: 100%;
-  }
-  .mask-image{
-    background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
-    mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
-    position: absolute;
-    width: 70%;
-    min-width: 250px;
-    min-height: 200px;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    background-size: cover; 
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    z-index: 0;
-    overflow: hidden;
-  }
-  .masked-image {
-    display: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(7%, -8%);
-    width: 80%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-  }
-}
-
-@media only screen and (min-width: 1040px) and (max-width: 1600px) {
-
-
-  .image-container {
-    position: absolute;
-    right: 0;
-    width: 40%; 
-    height: 600px; /* or specify a fixed height */
-    padding-left: 10px;
-    margin-right: 50px;
-    margin-top: 140px;
-  }
-  
-  .mask-image{
-    background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
-    mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 200px;
-    min-height: 390px;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    background-size: cover; 
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    z-index: 0;
-  }
-  
-  .masked-image {
-    display: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(3%, -10%);
-    width: 90%;
-    height: 100%;
-    min-width: 300px;
-    min-height: 390px;
-    object-fit: cover;
-    z-index: 1;
-  }
-}
-
-.image-container1 {
-  display: inline-block;
-  position: relative;
-}
-
-.image-container1 img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border: 5px solid transparent; /* Start with a transparent border */
-  border-radius: 100px 0px 100px 0px; /* Adjust border radius as needed */
-  animation: glow 1s infinite alternate; /* Animation with 2 seconds duration, infinite loop, and alternate direction */
-
-}
-
-.image-container1::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  
-}
-
-@keyframes glow {
-  0% {
-    border-color: rgba(255, 81, 0, 0.5); /* Start color of the border with some opacity */
-    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5); /* Start glow effect with some opacity */
-  }
-  100% {
-    border-color: rgb(255, 68, 0); /* End color of the border with full opacity */
-    box-shadow: 0 0 20px rgb(255, 72, 0); /* End glow effect with full opacity */
-  }
-}
-
 .boxx{
   position: relative;
-  width: 650px;
-  height: 650px;
+  width: 600px;
+  height: 600px;
   background-color: white;
   border-radius: 50%;
   overflow: hidden;
@@ -3868,4 +3672,205 @@ input[type="number"] {
 
 .content a:hover{
   letter-spacing: 0.2em;
+}
+
+@media only screen and (min-width: 12px) and (max-width: 547px){
+  .hidden1{
+    display: none;
+  }
+  .dizme_tm_services{
+    padding-top: 50px;
+  }
+  .dizme_tm_portfolio .portfolio_filter ul li {
+    margin: 0px 20px 0px 0px;
+    display: inline-block;
+  }
+
+  .dizme_tm_portfolio{
+    padding-top: 70px;
+  }
+}
+
+@media only screen and (max-width: 547px) {
+  .hello{
+    margin-top: 0%;
+  }
+
+
+  .image-container {
+    position: relative;
+    max-height: 240px;
+    max-width: 300px;
+    margin-top: 5%;
+    margin-left: 15%;
+    width: 100%;
+    height: 100%;
+  }
+  .mask-image{
+    background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    position: absolute;
+    width: 70%;
+    min-width: 250px;
+    min-height: 200px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    background-size: cover; 
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .masked-image {
+    display: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-5%, -16%);
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .hidden{
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 547px) and (max-width: 1040px) {
+  .hidden1{
+    display: none;
+  }
+  
+
+  .dizme_tm_portfolio .portfolio_filter ul li {
+    margin: 0px 30px 0px 0px;
+    display: inline-block;
+  }
+
+  .dizme_tm_portfolio{
+    padding-top: 70px;
+  }
+
+  .dizme_tm_services{
+    padding-top: 50px;
+  }
+
+  .image-container {
+    position: relative;
+    max-height: 340px;
+    max-width: 500px;
+    margin-top: 5%;
+    margin-left: 180px;
+    width: 100%;
+    height: 100%;
+  }
+  .mask-image{
+    background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    position: absolute;
+    width: 70%;
+    min-width: 250px;
+    min-height: 200px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    background-size: cover; 
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .masked-image {
+    display: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(7%, -8%);
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+}
+
+@media only screen and (min-width: 1040px) and (max-width: 1600px) {
+
+  .boxx{
+    width: 500px;
+    height: 500px;
+  }
+
+  .image-container {
+    position: absolute;
+    right: 0;
+    width: 40%; 
+    height: 600px; /* or specify a fixed height */
+    padding-left: 10px;
+    margin-right: 50px;
+    margin-top: 140px;
+  }
+  
+  .mask-image{
+    background: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    mask: url("https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2014/10/mask-image.png?x87314");
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 200px;
+    min-height: 390px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    background-size: cover; 
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    z-index: 0;
+  }
+  
+  .masked-image {
+    display: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(3%, -10%);
+    width: 90%;
+    height: 100%;
+    min-width: 300px;
+    min-height: 390px;
+    object-fit: cover;
+    z-index: 1;
+  }
+}
+
+.image-container1 {
+  display: inline-block;
+  position: relative;
+}
+
+.image-container1 img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 5px solid transparent; /* Start with a transparent border */
+  border-radius: 100px 0px 100px 0px; /* Adjust border radius as needed */
+  animation: glow 1s infinite alternate; /* Animation with 2 seconds duration, infinite loop, and alternate direction */
+
+}
+
+.image-container1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+}
+
+@keyframes glow {
+  0% {
+    border-color: rgba(255, 81, 0, 0.5); /* Start color of the border with some opacity */
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5); /* Start glow effect with some opacity */
+  }
+  100% {
+    border-color: rgb(255, 68, 0); /* End color of the border with full opacity */
+    box-shadow: 0 0 20px rgb(255, 72, 0); /* End glow effect with full opacity */
+  }
 }

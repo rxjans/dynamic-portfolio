@@ -6,7 +6,6 @@ import UserContext from "../userContext/userContext";
 
 const Skills = ({ dark }) => {
   const data1 = useContext(UserContext);
-  const [visible, setVisible] =useState(false);
   const data = data1?.skills?.filter(item => item.enabled)?.sort((a,b)=> a.sequence - b.sequence);
   useEffect(() => {
     window.addEventListener("scroll", activeSkillProgress);
