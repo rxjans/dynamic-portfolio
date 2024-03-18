@@ -19,7 +19,6 @@ const Skills = ({ dark }) => {
       speed: 500,
       transition: true,
     });
-    setVisible(true);
   }, 1000);
   
 
