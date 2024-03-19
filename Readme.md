@@ -70,7 +70,7 @@ Start the development server:
 
 * Testimonials Section Enhancements: Small images are now displayed on the left and right sides of the testimonials section, and functionality has been added to utilize testimonial images in those areas, enhancing the overall design and user engagement.
 
-* Filters Based on Tech Stacks in Projects Section: I've implemented dynamic filters based on tech stacks in the projects section, allowing users to easily navigate and filter projects based on their interests. Additionally, I filtered the data based on sequence based on the API Structure.
+* Filters Based on Tech Stacks in Projects Section: I've implemented dynamic filters based on tech stacks in the projects section, allowing users to easily navigate and filter projects based on their interests. Additionally, I filtered the data based on sequence of the API Structure.
 
 * Skills Bar Colors: Implemented color-coded skills bars to indicate proficiency levels.
   
