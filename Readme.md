@@ -40,7 +40,7 @@ Start the development server:
 
 ## Contribution Information
 
-* API Integration: Utilized a single API call and implemented efficient data sharing using prop drilling or the Context API.
+* API Integration: Utilized a single API call and implemented efficient data sharing using the Context API.
 
 * Data Utilization: Ensured comprehensive utilization of all API fields, including the "enabled" field.
 
