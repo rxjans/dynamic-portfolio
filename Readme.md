@@ -1,6 +1,7 @@
 # Portfolio Website with Dynamic Content
 This project is a dynamic portfolio website built using Next.js. The main feature of this project is the dynamic fetching of content from an external API to populate the portfolio section.
 
+
 ## Features
 Fetches data from an external API to dynamically populate the portfolio section.
 Supports various media types such as YouTube videos, Vimeo videos, Soundcloud tracks, and images.
@@ -24,6 +25,11 @@ Clone the repository:
 ## Install dependencies:
 
 - npm install
+
+## Access live preview
+- Here are the links:
+GitHub Repo: https://github.com/rxjans/dynamic-portfolio
+Vercel Link: https://dynamic-portfolio-steel.vercel.app
 
 ## Usage
 Start the development server:
