@@ -4,7 +4,6 @@ This project is a dynamic portfolio website built using Next.js. The main featur
 
 ## Features
 Fetches data from an external API to dynamically populate the portfolio section.
-Supports various media types such as YouTube videos, Vimeo videos, Soundcloud tracks, and images.
 Responsive design for optimal viewing across devices.
 
 ## Technologies Used
