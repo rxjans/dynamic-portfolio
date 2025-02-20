@@ -8,7 +8,7 @@ Responsive design for optimal viewing across devices.
 
 ## Technologies Used
 Next.js: A JavaScript library for building user interfaces.
-External API: Fetches data from an external API to dynamically populate the portfolio.
+External API: Fetches data from an external API to dynamically populate sections.
 
 ## Installation
 Follow these steps to set up the project:
