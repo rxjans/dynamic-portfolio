@@ -37,7 +37,7 @@ Start the development server:
 
 - Open the browser and navigate to http://localhost:3000 to view the website.
 
-## Contribution Information
+## Contribution Information:
 
 * API Integration: Utilized a single API call and implemented efficient data sharing using the Context API.
 
