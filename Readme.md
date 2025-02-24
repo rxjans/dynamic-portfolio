@@ -23,7 +23,7 @@ Clone the repository:
 
 ## Install dependencies:
 
-- npm install
+- npm install / npm i
 
 ## Access live preview
 - Here are the links:
