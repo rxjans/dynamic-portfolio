@@ -35,7 +35,7 @@ Start the development server:
 
 - npm run dev
 
-- Open the browser and navigate to http://localhost:3000 to view the website.
+- Open the browser, navigate to http://localhost:3000 to view the website.
 
 ## Contribution Information:
 
